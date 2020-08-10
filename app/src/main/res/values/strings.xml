@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">World News</string>
+    <string name="oops">Oops, unknown error</string>
+</resources>
