@@ -1,8 +1,12 @@
 package com.romanvolkov.worldnews.news.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.romanvolkov.worldnews.*
 import com.romanvolkov.worldnews.news.NewsItem
@@ -25,6 +29,25 @@ class NewsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         newsEpoxy = findViewById(R.id.newsEpoxy)
+        val layoutManager = (newsEpoxy.layoutManager as LinearLayoutManager)
+        var lastItem = 0
+        var visibleItemCount = 0
+        var totalItemCount = 0
+        newsEpoxy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    visibleItemCount = layoutManager.childCount;
+                    totalItemCount = layoutManager.itemCount;
+                    lastItem = layoutManager.findFirstVisibleItemPosition();
+                }
+                if ((visibleItemCount + lastItem) >= totalItemCount) {
+                    viewModel.loadMore()
+                }
+
+
+            }
+        })
+
         viewModel.state.observe(this, Observer(::updateItems))
     }
 
@@ -58,12 +81,11 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun onUrlClick(url: String) {
-        viewModel.loadMore()
-//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//        startActivity(browserIntent)
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(browserIntent)
     }
 
     private fun onRetry() {
-        viewModel.load(1)
+        viewModel.loadMore()
     }
 }
