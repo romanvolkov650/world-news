@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 interface INewsActivityViewModel : IViewModel {
-    val state: LiveData<List<IViewObject>>
+    val state: LiveData<List<IValueObject>>
     fun load(page: Int)
     fun loadMore()
 }
@@ -26,7 +26,7 @@ class NewsActivityViewModel(private val repository: INewsRepository) :
     private val items: BehaviorRelay<List<Article>> = BehaviorRelay.createDefault(listOf())
 
 
-    override val state: MutableLiveData<List<IViewObject>> = MutableLiveData(
+    override val state: MutableLiveData<List<IValueObject>> = MutableLiveData(
         listOf(LoadingVO("loading"))
     )
 

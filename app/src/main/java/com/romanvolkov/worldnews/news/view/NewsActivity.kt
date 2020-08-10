@@ -51,7 +51,7 @@ class NewsActivity : AppCompatActivity() {
         viewModel.state.observe(this, Observer(::updateItems))
     }
 
-    private fun updateItems(items: List<IViewObject>) {
+    private fun updateItems(items: List<IValueObject>) {
         newsEpoxy.withModels {
             items.forEach { item ->
                 when (item) {
@@ -86,6 +86,6 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun onRetry() {
-        viewModel.loadMore()
+        viewModel.load(1)
     }
 }

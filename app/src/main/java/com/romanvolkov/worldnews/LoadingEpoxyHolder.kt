@@ -4,7 +4,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
-data class LoadingVO(val id: String) : IViewObject
+data class LoadingVO(val id: String) : IValueObject
 
 @EpoxyModelClass(layout = R.layout.vh_loading)
 abstract class LoadingEpoxyHolder : EpoxyModelWithHolder<LoadingEpoxyHolder.Holder>() {

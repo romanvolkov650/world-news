@@ -35,7 +35,7 @@ abstract class NewsItemEpoxyHolder : EpoxyModelWithHolder<NewsItemEpoxyHolder.Ho
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
         val output = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         val d = sdf.parse(item.publishedAt)
-        val formattedTime: String = output.format(d)
+        val formattedTime: String = output.format(d!!)
         holder.time.text = formattedTime
     }
 

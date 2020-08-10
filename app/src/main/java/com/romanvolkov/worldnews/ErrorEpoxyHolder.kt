@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
-data class ErrorVO(val id: String, val message: StringVO) : IViewObject
+data class ErrorVO(val id: String, val message: StringVO) : IValueObject
 
 @EpoxyModelClass(layout = R.layout.vh_error)
 abstract class ErrorEpoxyHolder : EpoxyModelWithHolder<ErrorEpoxyHolder.Holder>() {

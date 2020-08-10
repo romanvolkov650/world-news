@@ -1,6 +1,6 @@
 package com.romanvolkov.worldnews.news
 
-import com.romanvolkov.worldnews.IViewObject
+import com.romanvolkov.worldnews.IValueObject
 import com.romanvolkov.worldnews.StringVO
 
 data class NewsItem(
@@ -11,4 +11,4 @@ data class NewsItem(
     val url: String,
     val imageUrl: String?,
     val publishedAt: String
-) : IViewObject
+) : IValueObject

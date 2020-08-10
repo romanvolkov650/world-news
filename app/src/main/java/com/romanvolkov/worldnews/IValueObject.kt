@@ -1,3 +1,3 @@
 package com.romanvolkov.worldnews
 
-interface IViewObject
+interface IValueObject
